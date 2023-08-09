@@ -12,7 +12,6 @@ namespace CreeperSharp.Core
         public string Everyone = "@a";
         public string Random = "@r";
         public string Closest = "@p";
-        const string[] defaults = null;
         public string Teleport(string selector, string to)
         {
             return $"tp {selector} {to}";
