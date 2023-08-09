@@ -30,12 +30,14 @@ namespace CreeperSharp
                 // Create directories and project namespace
                 if (!File.Exists($"data/{id}/functions/{load}.mcfunction"))
                 {
+                    Thread.Sleep(10);
                     FO.CreateFullDirectory(FO.GetFunctionPath($"{id}:{load}"), true);
                     Console.WriteLine("Load function created succesfully");
                     Thread.Sleep(10);
                 }
                 if (!File.Exists($"data/{id}/functions/{main}.mcfunction"))
                 {
+                    Thread.Sleep(10);
                     FO.CreateFullDirectory(FO.GetFunctionPath($"{id}:{main}"), true);
                     Console.WriteLine("Main function created succesfully");
                     Thread.Sleep(10);

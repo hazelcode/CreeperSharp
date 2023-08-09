@@ -17,6 +17,7 @@
             }
             Thread.Sleep(10);
             File.WriteAllText(path, contents);
+            Thread.Sleep(10);
         }
         public void AddCommand(string command)
         {
