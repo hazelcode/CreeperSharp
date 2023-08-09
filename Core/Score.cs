@@ -23,17 +23,48 @@ namespace CreeperSharp.Core
         {
             return $"scoreboard objectives add {this.id} {this.type} {this.name}";
         }
-        public string Set(string selector, Score score, int count)
+        public string Set(int count, string selector = "")
         {
-            return $"scoreboard players set {selector} {score.id} {count}";
+            if(selector == "")
+            {
+                return $"scoreboard players set #{this.id} {this.id} {count}";
+            } else
+            {
+                return $"scoreboard players set {selector} {this.id} {count}";
+            }
         }
-        public string Add(string selector, int count)
+        public string Add(int count, string selector = "")
         {
-            return $"scoreboard players add {selector} {this.id} {count}";
+            if (selector == "")
+            {
+                return $"scoreboard players add #{this.id} {this.id} {count}";
+            }
+            else
+            {
+                return $"scoreboard players add {selector} {this.id} {count}";
+            }
         }
         public string Remove(string selector, int count)
         {
-            return $"scoreboard players remove {selector} {this.id} {count}";
+            if (selector == "")
+            {
+                return $"scoreboard players remove #{this.id} {this.id} {count}";
+            }
+            else
+            {
+                return $"scoreboard players remove {selector} {this.id} {count}";
+            }
+        }
+        public string Reset(string selector = "")
+        {
+            if (selector == "")
+            {
+                return $"scoreboard players reset #{this.id} {this.id}";
+            }
+            else
+            {
+                return $"scoreboard players reset #{selector} {this.id}";
+            }
         }
     }
 }
