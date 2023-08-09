@@ -50,5 +50,34 @@
         {
             return "return " + i;
         }
+        public string Call(string function)
+        {
+            return "function " + function;
+        }
+        public string GetAllCommands(string function)
+        {
+            FileOrganizer FO = new FileOrganizer();
+            Thread.Sleep(10);
+            return File.ReadAllText(FO.GetFunctionPath(function));
+        }
+        public string Extend(string function, string[] commands)
+        {
+            try
+            {
+                FileOrganizer FO = new FileOrganizer();
+                Thread.Sleep(10);
+                string path = FO.GetFunctionPath(function);
+                string origin = this.path;
+                Function ExtendedFunction = new Function(FO.GetFunctionPath(function), GetAllCommands(function));
+                ExtendedFunction.PrependCommands(commands);
+                Console.WriteLine($"Extended {path} from {origin}");
+                Thread.Sleep(10);
+                return "function " + function;
+            } catch(IOException e)
+            {
+                Console.WriteLine(e.Message);
+                return "";
+            }
+        }
     }
 }
