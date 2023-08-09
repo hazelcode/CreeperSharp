@@ -27,5 +27,13 @@ namespace CreeperSharp.Core
         {
             return $"scoreboard players set {selector} {score.id} {count}";
         }
+        public string Add(string selector, int count)
+        {
+            return $"scoreboard players add {selector} {this.id} {count}";
+        }
+        public string Remove(string selector, int count)
+        {
+            return $"scoreboard players remove {selector} {this.id} {count}";
+        }
     }
 }
