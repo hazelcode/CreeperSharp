@@ -41,5 +41,9 @@
                 return false;
             }
         }
+        public string Return(int i)
+        {
+            return "return " + i;
+        }
     }
 }
