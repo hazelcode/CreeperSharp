@@ -42,5 +42,20 @@ namespace CreeperSharp.Core
         {
             return "summon " + entity + " " + pos[0] + " " + pos[1] + " " + pos[2] + " " + addition;
         }
+        public string Store(string where, string at, string arguments, string addition = "")
+        {
+            return "store " + where + " " + at + " " + arguments + " " + addition;
+        }
+        public string StoreScore(string where, Score score, string selector = "", string addition = "")
+        {
+            if (selector == "")
+            {
+                return "store " + where + " score " + "#" + score.id + " " + score.id + " " + addition;
+            }
+            else
+            {
+                return "store " + where + " score " + selector + " " + score.id + " " + addition;
+            }
+        }
     }
 }
