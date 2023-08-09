@@ -18,22 +18,22 @@
             Thread.Sleep(10);
             File.WriteAllText(path, contents);
         }
-        public void AddCommand(string path, string command)
+        public void AddCommand(string command)
         {
-            string content = File.ReadAllText(path);
+            string content = File.ReadAllText(this.path);
             content = content + command;
-            File.WriteAllText(path, content);
+            File.WriteAllText(this.path, content);
         }
-        public bool WriteAllCommands(string path, string[] commands)
+        public bool WriteAllCommands(string[] commands)
         {
             try
             {
-                string content = File.ReadAllText(path);
+                string content = File.ReadAllText(this.path);
                 foreach (string command in commands)
                 {
                     content = content + "\n" + command;
                 }
-                File.WriteAllText(path, content);
+                File.WriteAllText(this.path, content);
                 return true;
             } catch(IOException e)
             {
