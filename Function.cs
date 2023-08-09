@@ -19,21 +19,25 @@
             File.WriteAllText(path, contents);
             Thread.Sleep(10);
         }
-        public void AddCommand(string command)
+        public void PrependCommands(string[] commands)
         {
             string content = File.ReadAllText(this.path);
-            content = content + command;
+            foreach(string command in commands)
+            {
+                content = content + "\n" + command;
+            }
             File.WriteAllText(this.path, content);
         }
         public bool WriteAllCommands(string[] commands)
         {
             try
             {
-                string content = File.ReadAllText(this.path);
+                string content = "";
                 foreach (string command in commands)
                 {
-                    content = content + "\n" + command;
+                    content = content + command.TrimEnd() + "\n";
                 }
+                content = content.TrimEnd();
                 File.WriteAllText(this.path, content);
                 return true;
             } catch(IOException e)
