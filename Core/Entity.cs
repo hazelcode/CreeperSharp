@@ -28,9 +28,5 @@ namespace CreeperSharp.Core
         {
             return $"tag {selector} remove {tag}";
         }
-        public string Say(string msg)
-        {
-            return $"say {msg}";
-        }
     }
 }
