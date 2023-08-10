@@ -60,7 +60,7 @@
             Thread.Sleep(10);
             return File.ReadAllText(FO.GetFunctionPath(function));
         }
-        public string Extend(string function, string[] commands)
+        public string Extend(string function, string[] commands, bool createFunction = false)
         {
             try
             {
@@ -68,8 +68,15 @@
                 Thread.Sleep(10);
                 string path = FO.GetFunctionPath(function);
                 string origin = this.path;
-                Function ExtendedFunction = new Function(FO.GetFunctionPath(function), GetAllCommands(function));
-                ExtendedFunction.PrependCommands(commands);
+                if(createFunction == false)
+                {
+                    Function ExtendedFunction = new Function(FO.GetFunctionPath(function), GetAllCommands(function) + "\n## Extended from " + origin);
+                    ExtendedFunction.PrependCommands(commands);
+                } else
+                {
+                    Function ExtendedFunction = new Function(FO.GetFunctionPath(function), "## Created from " + origin);
+                    ExtendedFunction.PrependCommands(commands);
+                }
                 Console.WriteLine($"Extended {path} from {origin}");
                 Thread.Sleep(10);
                 return "function " + function;
