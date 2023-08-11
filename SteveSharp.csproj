@@ -10,16 +10,22 @@
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageTags>Minecraft; Minecraft Framework; Datapacks; Datapack Coding; Minecraft Datapacks; Datapacking; SteveSharp; Datapack Framework; Minecraft Script; Minecraft Scripting</PackageTags>
     <PackAsTool>False</PackAsTool>
-    <AssemblyVersion>2023.811.0</AssemblyVersion>
-	<FileVersion>2023.811.0</FileVersion>
-	<Version>2023.811.0</Version>
+    <AssemblyVersion>2023.811.1</AssemblyVersion>
+	<FileVersion>2023.811.1</FileVersion>
+	<Version>2023.811.1</Version>
 	<Authors>LezaH</Authors>
 	<PackageLicenseFile>LICENSE</PackageLicenseFile>
 	<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
 	<RepositoryUrl>https://github.com/hazelcode/CreeperSharp</RepositoryUrl>
+	<PackageIcon>icon.png</PackageIcon>
+	<RepositoryType>git</RepositoryType>
   </PropertyGroup>
 
   <ItemGroup>
+    <None Update="icon.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
     <None Update="LICENSE">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
