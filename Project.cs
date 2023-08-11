@@ -1,7 +1,7 @@
-﻿using CreeperSharp.JsonShapes;
+﻿using SteveSharp.JsonShapes;
 using System.Text.Json;
 
-namespace CreeperSharp
+namespace SteveSharp
 {
     public class Project
     {

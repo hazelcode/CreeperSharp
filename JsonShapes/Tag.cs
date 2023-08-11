@@ -1,4 +1,4 @@
-﻿namespace CreeperSharp.JsonShapes
+﻿namespace SteveSharp.JsonShapes
 {
     public class Tag
     {

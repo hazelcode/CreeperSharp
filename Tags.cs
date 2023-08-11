@@ -1,7 +1,7 @@
-﻿
+﻿using SteveSharp.JsonShapes;
 using System.Text.Json;
 
-namespace CreeperSharp
+namespace SteveSharp
 {
     public class Tags
     {
@@ -9,7 +9,7 @@ namespace CreeperSharp
         {
             try
             {
-                var tag = new JsonShapes.Tag
+                var tag = new Tag
                 {
                     values = values,
                     replace = replace

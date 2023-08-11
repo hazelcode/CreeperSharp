@@ -6,9 +6,9 @@
     <Nullable>enable</Nullable>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Title>CreeperSharp</Title>
-    <Description>CreeperSharp Framework for Minecraft datapacks developers and make easier the coding process</Description>
+    <Description>SteveSharp Framework for Minecraft datapacks developers and make easier the coding process</Description>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <PackageTags>Minecraft; Minecraft Framework; Datapacks; Datapack Coding; Minecraft Datapacks; Datapacking; CreeperSharp; Datapack Framework; Minecraft Script; Minecraft Scripting</PackageTags>
+    <PackageTags>Minecraft; Minecraft Framework; Datapacks; Datapack Coding; Minecraft Datapacks; Datapacking; SteveSharp; Datapack Framework; Minecraft Script; Minecraft Scripting</PackageTags>
     <PackAsTool>False</PackAsTool>
     <AssemblyVersion>2023.811.0</AssemblyVersion>
 	<FileVersion>2023.811.0</FileVersion>

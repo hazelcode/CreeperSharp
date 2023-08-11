@@ -1,4 +1,4 @@
-﻿namespace CreeperSharp.Core
+﻿namespace SteveSharp.Core
 {
     public class Chat
     {
