@@ -12,7 +12,7 @@
         }
         public string Summon(string entity, string[] pos, string nbt = "{}")
         {
-            return $"summon {entity} {pos} {nbt}";
+            return $"summon {entity} {pos[0]} {pos[1]} {pos[2]} {nbt}";
         }
         public string AddTag(string selector, string tag)
         {
