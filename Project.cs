@@ -19,12 +19,12 @@ namespace SteveSharp
                 Environment.CurrentDirectory = name;
 
                 // Serialize project metadata to JSON and write to the pack.mcmeta file
-                var pack = new Dictionary<string, PackMetadata>
+                var packMetadata = new PackMetadata
                 {
-                    ["pack"] = new PackMetadata { description = description, pack_format = pack_format }
+                    pack = new pack { description = description, pack_format = pack_format }
                 };
                 var options = new JsonSerializerOptions { WriteIndented = true };
-                string MetadataStructure = JsonSerializer.Serialize(pack, options);
+                string MetadataStructure = JsonSerializer.Serialize(packMetadata, options);
                 File.WriteAllText("pack.mcmeta", MetadataStructure);
 
                 // Create directories and project namespace
