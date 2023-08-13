@@ -22,5 +22,9 @@
         {
             return $"tag {selector} remove {tag}";
         }
+        public string Kill(string selector)
+        {
+            return $"kill {selector}";
+        }
     }
 }
