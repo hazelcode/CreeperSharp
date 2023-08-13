@@ -11,6 +11,7 @@
         public bool strikethrough { get; set; }
         public string? insertion { get; set; }
         public clickEvent? clickEvent { get; set; }
+        public TextComponent[]? extra { get; set; }
     }
     public class clickEvent
     {
