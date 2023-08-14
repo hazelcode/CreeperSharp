@@ -16,7 +16,7 @@
 	<Authors>LezaH</Authors>
 	<PackageLicenseFile>LICENSE</PackageLicenseFile>
 	<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
-	<RepositoryUrl>https://github.com/hazelcode/CreeperSharp</RepositoryUrl>
+	<RepositoryUrl>https://github.com/hazelcode/SteveSharp</RepositoryUrl>
 	<PackageIcon>icon.png</PackageIcon>
 	<RepositoryType>git</RepositoryType>
 	<PackageReleaseNotes>See the SteveSharp latest changes in https://github.com/hazelcode/SteveSharp/releases/latest</PackageReleaseNotes>
