@@ -9,21 +9,9 @@ namespace SteveSharp.Core
         {
             return $"say {msg}";
         }
-        public string Out(string selector, string msg, string? color = null, bool italic = false, bool bold = false, bool underlined = false, bool obfuscated = false, bool strikethrough = false, string? insertion = null, string? clickEventAction = null, string? clickEventValue = null)
+        public string Out(string selector, TextComponent[] text)
         {
-            TextComponent textComponent = new TextComponent
-            {
-                text = msg,
-                color = color,
-                italic = italic,
-                bold = bold,
-                underlined = underlined,
-                obfuscated = obfuscated,
-                strikethrough = strikethrough,
-                insertion = insertion,
-                clickEvent = new clickEvent { action = clickEventAction, value = clickEventValue }
-            };
-            string command = "tellraw " + selector + " " + JsonSerializer.Serialize(textComponent);
+            string command = "tellraw " + selector + " " + JsonSerializer.Serialize(text);
             return command;
         }
     }
