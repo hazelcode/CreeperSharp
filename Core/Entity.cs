@@ -2,10 +2,10 @@
 {
     public class Entity
     {
-        public string Self = "@s";
-        public string Everyone = "@a";
-        public string Random = "@r";
-        public string Closest = "@p";
+        public string Self(string match = "") { return "@s[" + match + "]"; }
+        public string Everyone(string match = "") { return "@a[" + match + "]"; }
+        public string Random(string match = "") { return "@r[" + match + "]"; }
+        public string Closest(string match = "") { return "@p[" + match + "]"; }
         public string Teleport(string selector, string to)
         {
             return $"tp {selector} {to}";
