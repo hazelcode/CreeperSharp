@@ -66,7 +66,7 @@
             }
             else
             {
-                return $"scoreboard players reset #{selector} {this.id}";
+                return $"scoreboard players reset {selector} {this.id}";
             }
         }
     }
