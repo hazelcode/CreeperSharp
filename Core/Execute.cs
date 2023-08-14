@@ -22,7 +22,7 @@
         }
         public string Asat(string selector, string addition = "")
         {
-            return "as " + selector + " " + "at " + selector + " " + addition;
+            return "as " + selector + " at @s " + addition;
         }
         public string Unless(string arguments, string addition = "")
         {
