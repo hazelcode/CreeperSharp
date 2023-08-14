@@ -17,6 +17,15 @@
         {
             return $"scoreboard objectives add {this.id} {this.type} {this.name}";
         }
+        public string AddObjectives(Score[] scores)
+        {
+            string commands = "";
+            foreach(Score score in scores)
+            {
+                commands += $"scoreboard objectives add {score.id} {score.type} {score.name}\n";
+            }
+            return commands;
+        }
         public string Set(int count, string selector = "")
         {
             if(selector == "")
