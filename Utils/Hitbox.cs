@@ -1,4 +1,4 @@
-﻿using SteveSharp
+﻿using SteveSharp;
 using SteveSharp.Core;
 using SteveSharp.JsonShapes;
 
