@@ -1,5 +1,6 @@
-﻿using SteveSharp;
+﻿using SteveSharp
 using SteveSharp.Core;
+using SteveSharp.JsonShapes;
 
 namespace SteveSharp.Utils
 {
@@ -14,11 +15,35 @@ namespace SteveSharp.Utils
         public string[] onRightClick;
         public Hitbox(string workspace, string id)
         {
+            Chat Chat = new Chat();
+            Entity Entity = new Entity();
             this.workspace = workspace;
             this.id = id;
             XYZ = new string[3] { "~", "~", "~" };
-            onAttack = new string[] { "title @s actionbar {\"text\": \"\"}" };
-            onRightClick = new string[] { "title @s actionbar {\"text\": \"\"}" };
+            onAttack = new string[] {
+                Chat.Out(
+                    Entity.Self(),
+                    new TextComponent[]
+                    {
+                        new TextComponent
+                        {
+                            text = ""
+                        }
+                    }
+                )
+            };
+            onRightClick = new string[] {
+                Chat.Out(
+                    Entity.Self(),
+                    new TextComponent[]
+                    {
+                        new TextComponent
+                        {
+                            text = ""
+                        }
+                    }
+                )
+            };
         }
         public string Summon(string function)
         {
@@ -33,16 +58,16 @@ namespace SteveSharp.Utils
                         Entity.Summon("interaction",new[]{ "~", "~", "~" },
                         "{Tags:[\"" + workspace + "." + this.id + "\"],width:" + this.width + ",height:" + this.height + "}"),
                         Execute.Write(
-                            Execute.Asat(Entity.Self("type=interaction,tag=" + workspace + "." + this.id)) +
+                            Execute.Asat(Entity.AllEntities("type=interaction,tag=" + workspace + "." + this.id)) +
                             "on attacker ",
                             onAttack
                         ),
                         Execute.Write(
-                            Execute.Asat(Entity.Self("type=interaction,tag=" + workspace + "." + this.id)) +
+                            Execute.Asat(Entity.AllEntities("type=interaction,tag=" + workspace + "." + this.id)) +
                             "on trigger ",
                             onRightClick
                         ),
-                        Entity.Kill("@e[type=interaction,tag=" + workspace + "." + this.id + "]")
+                        Entity.Kill(Entity.AllEntities("type=interaction,tag=" + workspace + "." + this.id))
                     }, true
                 );
         }
