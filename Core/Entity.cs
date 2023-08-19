@@ -6,6 +6,7 @@
         public string Everyone(string match = "") { if (match == "") return "@a"; else return "@a[" + match + "]"; }
         public string Random(string match = "") { if (match == "") return "@r"; else return "@r[" + match + "]"; }
         public string Closest(string match = "") { if (match == "") return "@p"; else return "@p[" + match + "]"; }
+        public string AllEntities(string match = "") { if (match == "") return "@e"; else return "@e[" + match + "]"; }
         public string Teleport(string selector, string to)
         {
             return $"tp {selector} {to}";
