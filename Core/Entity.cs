@@ -2,10 +2,10 @@
 {
     public class Entity
     {
-        public string Self(string match = "") { return "@s[" + match + "]"; }
-        public string Everyone(string match = "") { return "@a[" + match + "]"; }
-        public string Random(string match = "") { return "@r[" + match + "]"; }
-        public string Closest(string match = "") { return "@p[" + match + "]"; }
+        public string Self(string match = "") { if (match == "") return "@s"; else return "@s[" + match + "]"; }
+        public string Everyone(string match = "") { if (match == "") return "@a"; else return "@a[" + match + "]"; }
+        public string Random(string match = "") { if (match == "") return "@r"; else return "@r[" + match + "]"; }
+        public string Closest(string match = "") { if (match == "") return "@p"; else return "@p[" + match + "]"; }
         public string Teleport(string selector, string to)
         {
             return $"tp {selector} {to}";
