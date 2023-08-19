@@ -24,8 +24,9 @@
             string content = File.ReadAllText(this.path);
             foreach(string command in commands)
             {
-                content = content + "\n" + command;
+                content = content + command.TrimEnd() + "\n";
             }
+            content = content.TrimEnd();
             File.WriteAllText(this.path, content);
         }
         public bool WriteAllCommands(string[] commands)
@@ -70,11 +71,11 @@
                 string origin = this.path;
                 if(createFunction == false)
                 {
-                    Function ExtendedFunction = new Function(FO.GetFunctionPath(function), GetAllCommands(function) + "\n## Extended from " + origin);
+                    Function ExtendedFunction = new Function(FO.GetFunctionPath(function), GetAllCommands(function) + "\n## Extended from " + origin + "\n");
                     ExtendedFunction.PrependCommands(commands);
                 } else
                 {
-                    Function ExtendedFunction = new Function(FO.GetFunctionPath(function), "## Created from " + origin);
+                    Function ExtendedFunction = new Function(FO.GetFunctionPath(function), "## Created from " + origin + "\n");
                     ExtendedFunction.PrependCommands(commands);
                 }
                 Console.WriteLine($"Extended {path} from {origin}");
