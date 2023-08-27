@@ -10,10 +10,22 @@
             if (!File.Exists(path))
             {
                 FO.CreateFullDirectory(path, true);
-                Console.WriteLine($"Created {path}");
+                Console.ForegroundColor = ConsoleColor.DarkGreen;
+                Console.BackgroundColor = ConsoleColor.Green;
+                Console.Write("  NEW  ");
+                Console.ResetColor();
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine($" Created {path}");
+                Console.ResetColor();
             } else
             {
-                Console.WriteLine($"Extended {path}");
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                Console.BackgroundColor = ConsoleColor.Yellow;
+                Console.Write("  EXT  ");
+                Console.ResetColor();
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine($" Extended {path}");
+                Console.ResetColor();
             }
             Thread.Sleep(10);
             File.WriteAllText(path, contents);
@@ -78,7 +90,13 @@
                     Function ExtendedFunction = new Function(FO.GetFunctionPath(function), "## Created from " + origin + "\n");
                     ExtendedFunction.PrependCommands(commands);
                 }
-                Console.WriteLine($"Extended {path} from {origin}");
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                Console.BackgroundColor = ConsoleColor.Yellow;
+                Console.Write(" EXT/F ");
+                Console.ResetColor();
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine($" Extended {path} from {origin}");
+                Console.ResetColor();
                 Thread.Sleep(10);
                 return "function " + function;
             } catch(IOException e)

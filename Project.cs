@@ -9,6 +9,10 @@ namespace SteveSharp
         {
             try
             {
+                Console.Title = "SteveSharp Log";
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine($"\n</>   S t e v e S h a r p   L o g   </>\n\nProject: {name}\n\n");
+                Console.ResetColor();
                 FileOrganizer FO = new FileOrganizer();
 
                 // Create project directory
@@ -53,11 +57,24 @@ namespace SteveSharp
                 string[] tickTag = { $"{id}:{main}" };
                 funcTags.WriteAllValues(FO.GetJsonPath("minecraft:load","tags/functions"), loadTag);
                 funcTags.WriteAllValues(FO.GetJsonPath("minecraft:tick", "tags/functions"), loadTag);
-                Console.WriteLine("Project created succesfully!");
+                Console.ForegroundColor = ConsoleColor.DarkCyan;
+                Console.BackgroundColor = ConsoleColor.Cyan;
+                Console.Write("   P   ");
+                Console.ResetColor();
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.WriteLine(" Project created succesfully!");
+                Console.ResetColor();
             } catch(IOException e)
             {
-                Console.WriteLine("Project wasn't created succesfully or completely. Check the errors:\n");
+                Console.ForegroundColor = ConsoleColor.DarkRed;
+                Console.BackgroundColor = ConsoleColor.Red;
+                Console.Write("  P/E  ");
+                Console.ResetColor();
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine(" Project wasn't created succesfully or completely. Check the errors:\n");
+                Console.ForegroundColor = ConsoleColor.DarkRed;
                 Console.WriteLine(e.Message);
+                Console.ResetColor();
             }
         }
     }
