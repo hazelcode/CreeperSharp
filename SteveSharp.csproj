@@ -10,9 +10,9 @@
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageTags>Minecraft; Minecraft Framework; Datapacks; Datapack Coding; Minecraft Datapacks; Datapacking; SteveSharp; Datapack Framework; Minecraft Script; Minecraft Scripting</PackageTags>
     <PackAsTool>False</PackAsTool>
-    <AssemblyVersion>2023.814.0</AssemblyVersion>
-	<FileVersion>2023.814.0</FileVersion>
-	<Version>2023.814.0</Version>
+    <AssemblyVersion>2023.828.0</AssemblyVersion>
+	<FileVersion>2023.828.0</FileVersion>
+	<Version>2023.828.0</Version>
 	<Authors>LezaH</Authors>
 	<PackageLicenseFile>LICENSE</PackageLicenseFile>
 	<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
