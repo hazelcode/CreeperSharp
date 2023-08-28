@@ -15,8 +15,6 @@ namespace SteveSharp.Utils
         public string[] onRightClick;
         public Hitbox(string workspace, string id)
         {
-            Chat Chat = new Chat();
-            Entity Entity = new Entity();
             this.workspace = workspace;
             this.id = id;
             XYZ = new string[3] { "~", "~", "~" };
@@ -47,10 +45,7 @@ namespace SteveSharp.Utils
         }
         public string Summon(string function)
         {
-            FileOrganizer FO = new FileOrganizer();
-            Function f = new Function(FO.GetFunctionPath(function));
-            Execute Execute = new Execute();
-            Entity Entity = new Entity();
+            Function f = new Function(FileOrganizer.GetFunctionPath(function));
             return f.Extend(
                     $"{workspace}:hitbox/" + this.id.ToLower() + "/summon",
                     new string[]

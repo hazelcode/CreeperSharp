@@ -3,9 +3,9 @@ using System.Text.Json;
 
 namespace SteveSharp
 {
-    public class Tags
+    public static class Tags
     {
-        public bool WriteAllValues(string filePath, string[] values, bool replace = false)
+        public static bool WriteAllValues(string filePath, string[] values, bool replace = false)
         {
             try
             {

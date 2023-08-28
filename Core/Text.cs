@@ -3,9 +3,9 @@ using System.Text.Json;
 
 namespace SteveSharp.Core
 {
-    public class Text
+    public static class Text
     {
-        public TextComponent New(string text, string? color = null, bool italic = false, bool bold = false, bool underlined = false, bool obfuscated = false, bool strikethrough = false, string? insertion = null, string? clickEventAction = null, string? clickEventValue = null)
+        public static TextComponent New(string text, string? color = null, bool italic = false, bool bold = false, bool underlined = false, bool obfuscated = false, bool strikethrough = false, string? insertion = null, string? clickEventAction = null, string? clickEventValue = null)
         {
             TextComponent textComponent = new TextComponent
             {

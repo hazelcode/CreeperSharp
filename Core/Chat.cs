@@ -3,13 +3,13 @@ using System.Text.Json;
 
 namespace SteveSharp.Core
 {
-    public class Chat
+    public static class Chat
     {
-        public string Say(string msg)
+        public static string Say(string msg)
         {
             return $"say {msg}";
         }
-        public string Out(string selector, TextComponent[] text)
+        public static string Out(string selector, TextComponent[] text)
         {
             string command = "tellraw " + selector + " " + JsonSerializer.Serialize(text);
             return command;

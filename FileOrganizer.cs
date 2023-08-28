@@ -1,8 +1,8 @@
 ﻿namespace SteveSharp
 {
-    public class FileOrganizer
+    public static class FileOrganizer
     {
-        public string CreateFullDirectory(string Dir, bool createFile = false)
+        public static string CreateFullDirectory(string Dir, bool createFile = false)
         {
             try
             {
@@ -32,7 +32,7 @@
             }
             return Dir;
         }
-        public string GetFunctionPath(string namespacedPath)
+        public static string GetFunctionPath(string namespacedPath)
         {
             char[] separators = { ':', '/' };
             string[] parts = namespacedPath.Split(separators);
@@ -44,7 +44,7 @@
             relativePath = relativePath + ".mcfunction";
             return relativePath;
         }
-        public string GetJsonPath(string namespacedPath, string sector)
+        public static string GetJsonPath(string namespacedPath, string sector)
         {
             char[] separators = { ':', '/' };
             string[] parts = namespacedPath.Split(separators);

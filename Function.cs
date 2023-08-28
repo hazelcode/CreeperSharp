@@ -5,11 +5,10 @@
         string path = "";
         public Function(string path, string contents = "")
         {
-            FileOrganizer FO = new FileOrganizer();
             this.path = path;
             if (!File.Exists(path))
             {
-                FO.CreateFullDirectory(path, true);
+                FileOrganizer.CreateFullDirectory(path, true);
                 Console.ForegroundColor = ConsoleColor.DarkGreen;
                 Console.BackgroundColor = ConsoleColor.Green;
                 Console.Write("  NEW  ");
@@ -69,25 +68,23 @@
         }
         public string GetAllCommands(string function)
         {
-            FileOrganizer FO = new FileOrganizer();
             Thread.Sleep(10);
-            return File.ReadAllText(FO.GetFunctionPath(function));
+            return File.ReadAllText(FileOrganizer.GetFunctionPath(function));
         }
         public string Extend(string function, string[] commands, bool createFunction = false)
         {
             try
             {
-                FileOrganizer FO = new FileOrganizer();
                 Thread.Sleep(10);
-                string path = FO.GetFunctionPath(function);
+                string path = FileOrganizer.GetFunctionPath(function);
                 string origin = this.path;
                 if(createFunction == false)
                 {
-                    Function ExtendedFunction = new Function(FO.GetFunctionPath(function), GetAllCommands(function) + "\n## Extended from " + origin + "\n");
+                    Function ExtendedFunction = new Function(FileOrganizer.GetFunctionPath(function), GetAllCommands(function) + "\n## Extended from " + origin + "\n");
                     ExtendedFunction.PrependCommands(commands);
                 } else
                 {
-                    Function ExtendedFunction = new Function(FO.GetFunctionPath(function), "## Created from " + origin + "\n");
+                    Function ExtendedFunction = new Function(FileOrganizer.GetFunctionPath(function), "## Created from " + origin + "\n");
                     ExtendedFunction.PrependCommands(commands);
                 }
                 Console.ForegroundColor = ConsoleColor.DarkYellow;

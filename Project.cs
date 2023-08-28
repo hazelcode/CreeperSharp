@@ -13,7 +13,6 @@ namespace SteveSharp
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine($"\n</>   S t e v e S h a r p   L o g   </>\n\nProject: {name}\n\n");
                 Console.ResetColor();
-                FileOrganizer FO = new FileOrganizer();
 
                 // Create project directory
                 if (!Directory.Exists(name))
@@ -35,28 +34,27 @@ namespace SteveSharp
                 if (!File.Exists($"data/{id}/functions/{load}.mcfunction"))
                 {
                     Thread.Sleep(10);
-                    FO.CreateFullDirectory(FO.GetFunctionPath($"{id}:{load}"), true);
+                    FileOrganizer.CreateFullDirectory(FileOrganizer.GetFunctionPath($"{id}:{load}"), true);
                     Console.WriteLine("Load function created succesfully");
                     Thread.Sleep(10);
                 }
                 if (!File.Exists($"data/{id}/functions/{main}.mcfunction"))
                 {
                     Thread.Sleep(10);
-                    FO.CreateFullDirectory(FO.GetFunctionPath($"{id}:{main}"), true);
+                    FileOrganizer.CreateFullDirectory(FileOrganizer.GetFunctionPath($"{id}:{main}"), true);
                     Console.WriteLine("Main function created succesfully");
                     Thread.Sleep(10);
                 }
                 if (!Directory.Exists($"data/minecraft/tags/functions"))
                 {
-                    FO.CreateFullDirectory($"data/minecraft/tags/functions");
+                    FileOrganizer.CreateFullDirectory($"data/minecraft/tags/functions");
                 }
 
                 // Create tick and load JSON files
-                Tags funcTags = new Tags();
                 string[] loadTag = { $"{id}:{load}" };
                 string[] tickTag = { $"{id}:{main}" };
-                funcTags.WriteAllValues(FO.GetJsonPath("minecraft:load","tags/functions"), loadTag);
-                funcTags.WriteAllValues(FO.GetJsonPath("minecraft:tick", "tags/functions"), loadTag);
+                Tags.WriteAllValues(FileOrganizer.GetJsonPath("minecraft:load","tags/functions"), loadTag);
+                Tags.WriteAllValues(FileOrganizer.GetJsonPath("minecraft:tick", "tags/functions"), loadTag);
                 Console.ForegroundColor = ConsoleColor.DarkCyan;
                 Console.BackgroundColor = ConsoleColor.Cyan;
                 Console.Write("   P   ");

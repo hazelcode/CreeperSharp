@@ -17,7 +17,7 @@
         {
             return $"scoreboard objectives add {this.id} {this.type} {this.name}";
         }
-        public string AddObjectives(Score[] scores)
+        public static string AddObjectives(Score[] scores)
         {
             string commands = "";
             foreach(Score score in scores)
