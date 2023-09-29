@@ -69,5 +69,12 @@
                 return $"scoreboard players reset {selector} {this.id}";
             }
         }
+        /// <summary>
+        /// Only for use in scores={} cases
+        /// </summary>
+        /// <returns></returns>
+        public string Matches(int value){
+            return this.id + '=' + value;
+        }
     }
 }
