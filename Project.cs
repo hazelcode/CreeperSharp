@@ -7,6 +7,11 @@ namespace SteveSharp
     {
         public Project(string name, string description, string id, int pack_format, string load, string main)
         {
+            Context.projectName = name;
+            Context.id = id;
+            Context.packFormat = pack_format;
+            Context.loadFile = load;
+            Context.mainFile = main;
             try
             {
                 Console.Title = "SteveSharp Log";

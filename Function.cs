@@ -5,6 +5,7 @@
         string path = "";
         public Function(string path, string contents = "")
         {
+            Context.currentPath = path;
             this.path = path;
             if (!File.Exists(path))
             {
@@ -32,6 +33,7 @@
         }
         public void PrependCommands(string[] commands)
         {
+            Context.currentPath = this.path;
             string content = File.ReadAllText(this.path);
             foreach(string command in commands)
             {
@@ -77,6 +79,7 @@
             {
                 Thread.Sleep(10);
                 string path = FileOrganizer.GetFunctionPath(function);
+                Context.currentPath = path;
                 string origin = this.path;
                 if(createFunction == false)
                 {
@@ -95,6 +98,7 @@
                 Console.WriteLine($" Extended {path} from {origin}");
                 Console.ResetColor();
                 Thread.Sleep(10);
+                Context.currentPath = this.path;
                 return "function " + function;
             } catch(IOException e)
             {
