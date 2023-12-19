@@ -14,5 +14,10 @@ namespace SteveSharp.Core
             string command = "tellraw " + selector + " " + JsonSerializer.Serialize(text);
             return command;
         }
+        public static string Out(string selector, TextComponent text)
+        {
+            string command = "tellraw " + selector + " " + JsonSerializer.Serialize(text);
+            return command;
+        }
     }
 }

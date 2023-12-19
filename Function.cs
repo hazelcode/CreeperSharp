@@ -60,6 +60,16 @@
                 return false;
             }
         }
+        public static void WriteAllFunctions(Function[] functions){
+            if(Context.currentPath != null)
+            try {
+                foreach(Function f in functions){
+                    f.WriteAllCommands(f.GetAllCommands(FileOrganizer.GetFunctionPath(Context.currentPath)));
+                }
+            } catch(IOException e) {
+                Console.WriteLine(e);
+            }
+        }
         public string Return(int i)
         {
             return "return " + i;
