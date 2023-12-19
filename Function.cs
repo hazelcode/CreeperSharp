@@ -64,7 +64,7 @@
             if(Context.currentPath != null)
             try {
                 foreach(Function f in functions){
-                    f.WriteAllCommands(f.GetAllCommands(FileOrganizer.GetFunctionPath(Context.currentPath)));
+                    f.WriteAllCommands(new string[] { f.GetAllCommands(FileOrganizer.GetFunctionPath(Context.currentPath)) });
                 }
             } catch(IOException e) {
                 Console.WriteLine(e);
