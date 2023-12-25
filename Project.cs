@@ -5,8 +5,19 @@ namespace SteveSharp
 {
     public class Project
     {
+        private readonly string _load;
+        private readonly string _main;
         public Project(string name, string description, string id, int pack_format, string load, string main)
         {
+            _load = load;
+            _main = main;
+            DataCollector collector = new DataCollector()
+            {
+                projectName = name,
+                projectDesc = description,
+                pack_format = pack_format,
+                functions = null
+            };
             Context.projectName = name;
             Context.id = id;
             Context.packFormat = pack_format;

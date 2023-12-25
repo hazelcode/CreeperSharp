@@ -2,6 +2,7 @@ namespace SteveSharp;
 
 /// <summary>
 /// This is totally convenient because enables the context access to our libraries and we can develop tools easily without asking everywhere the pack id, and more information.
+/// You can take this data for your proposals.
 /// </summary>
 public class Context
 {
