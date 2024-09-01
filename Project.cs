@@ -11,13 +11,6 @@ namespace SteveSharp
         {
             _load = load;
             _main = main;
-            DataCollector collector = new DataCollector()
-            {
-                projectName = name,
-                projectDesc = description,
-                pack_format = pack_format,
-                functions = null
-            };
             Context.projectName = name;
             Context.id = id;
             Context.packFormat = pack_format;
