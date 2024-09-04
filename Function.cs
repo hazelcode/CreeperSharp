@@ -5,7 +5,7 @@
         static string Path = "";
         public Function(string path, string contents = "")
         {
-            Path = path;
+            Path = FileOrganizer.GetFunctionPath(path);
             if (!File.Exists(path))
             {
                 FileOrganizer.CreateFullDirectory(path, true);
