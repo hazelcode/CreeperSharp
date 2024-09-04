@@ -8,14 +8,14 @@
             Path = FileOrganizer.GetFunctionPath(path);
             if (!File.Exists(path))
             {
-                FileOrganizer.CreateFullDirectory(path, true);
+                FileOrganizer.CreateFullDirectory(Path, true);
                 Displays.NewFunction(path);
             } else
             {
                 Displays.ExtendedFunction(path);
             }
             Thread.Sleep(10);
-            File.WriteAllText(path, contents);
+            File.WriteAllText(Path, contents);
             Thread.Sleep(10);
         }
         public void PrependCommands(string[] commands)
@@ -53,7 +53,7 @@
         public static void WriteAllFunctions(Function[] functions){
             try {
                 foreach(Function f in functions){
-                    f.WriteAllCommands(new string[] { f.GetAllCommands(FileOrganizer.GetFunctionPath(Path)) });
+                    f.WriteAllCommands(new string[] { f.GetAllCommands(Path) });
                 }
             } catch(IOException e) {
                 Console.WriteLine(e);
@@ -67,10 +67,10 @@
         {
             return "function " + function;
         }
-        public string GetAllCommands(string function)
+        public string GetAllCommands(string path)
         {
             Thread.Sleep(10);
-            return File.ReadAllText(FileOrganizer.GetFunctionPath(function));
+            return File.ReadAllText(path);
         }
         public string Extend(string function, string[] commands, bool createFunction = false)
         {
@@ -81,11 +81,11 @@
                 string origin = Path;
                 if(createFunction == false)
                 {
-                    Function ExtendedFunction = new Function(FileOrganizer.GetFunctionPath(function), GetAllCommands(function) + "\n## Extended from " + origin + "\n");
+                    Function ExtendedFunction = new Function(function, GetAllCommands(function) + "\n## Extended from " + origin + "\n");
                     ExtendedFunction.PrependCommands(commands);
                 } else
                 {
-                    Function ExtendedFunction = new Function(FileOrganizer.GetFunctionPath(function), "## Created from " + origin + "\n");
+                    Function ExtendedFunction = new Function(function, "## Created from " + origin + "\n");
                     ExtendedFunction.PrependCommands(commands);
                 }
                 Displays.ExtendedFrom(path, origin);
