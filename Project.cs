@@ -5,6 +5,12 @@ namespace SteveSharp
 {
     public class Project
     {
+        private void Display(string name) {
+            Console.Title = "SteveSharp Log";
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine($"\n</>   S t e v e S h a r p   L o g   </>\n\nProject: {name}\n\n");
+            Console.ResetColor();
+        }
         private readonly string _load;
         private readonly string _main;
         public Project(string name, string description, string id, int pack_format, string load, string main)
@@ -13,11 +19,8 @@ namespace SteveSharp
             _main = main;
             try
             {
-                Console.Title = "SteveSharp Log";
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine($"\n</>   S t e v e S h a r p   L o g   </>\n\nProject: {name}\n\n");
-                Console.ResetColor();
-
+                // Display Console Text
+                Display(name);
                 // Create project directory
                 if (!Directory.Exists(name))
                 {
