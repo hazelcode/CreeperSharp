@@ -2,21 +2,24 @@
 {
     public class Function
     {
-        static string Path = "";
-        public Function(string path, string contents = "")
+        public string Path = "";
+        public List<string> Body { get; set; }
+        public Function(string path, List<string> body)
         {
             Path = FileOrganizer.GetFunctionPath(path);
-            if (!File.Exists(path))
-            {
-                FileOrganizer.CreateFullDirectory(Path, true);
-                Displays.NewFunction(path);
-            } else
-            {
-                Displays.ExtendedFunction(path);
-            }
-            Thread.Sleep(10);
-            File.WriteAllText(Path, contents);
-            Thread.Sleep(10);
+            Body = body;
+            Displays.NewFunction(path);
+            // if (!File.Exists(path))
+            // {
+            //     FileOrganizer.CreateFullDirectory(Path, true);
+            //     Displays.NewFunction(path);
+            // } else
+            // {
+            //     Displays.ExtendedFunction(path);
+            // }
+            // Thread.Sleep(10);
+            // File.WriteAllText(Path, contents);
+            // Thread.Sleep(10);
         }
         public void PrependCommands(string[] commands)
         {
@@ -50,15 +53,6 @@
                 return false;
             }
         }
-        public static void WriteAllFunctions(Function[] functions){
-            try {
-                foreach(Function f in functions){
-                    f.WriteAllCommands(new string[] { f.GetAllCommands(Path) });
-                }
-            } catch(IOException e) {
-                Console.WriteLine(e);
-            }
-        }
         public string Return(int i)
         {
             return "return " + i;
@@ -67,35 +61,30 @@
         {
             return "function " + function;
         }
-        public string GetAllCommands(string path)
-        {
-            Thread.Sleep(10);
-            return File.ReadAllText(path);
-        }
-        public string Extend(string function, string[] commands, bool createFunction = false)
-        {
-            try
-            {
-                Thread.Sleep(10);
-                string path = FileOrganizer.GetFunctionPath(function);
-                string origin = Path;
-                if(createFunction == false)
-                {
-                    Function ExtendedFunction = new Function(function, GetAllCommands(function) + "\n## Extended from " + origin + "\n");
-                    ExtendedFunction.PrependCommands(commands);
-                } else
-                {
-                    Function ExtendedFunction = new Function(function, "## Created from " + origin + "\n");
-                    ExtendedFunction.PrependCommands(commands);
-                }
-                Displays.ExtendedFrom(path, origin);
-                Thread.Sleep(10);
-                return "function " + function;
-            } catch(IOException e)
-            {
-                Console.WriteLine(e.Message);
-                return "";
-            }
-        }
+        // public string Extend(string function, string[] commands, bool createFunction = false)
+        // {
+        //     try
+        //     {
+        //         Thread.Sleep(10);
+        //         string path = FileOrganizer.GetFunctionPath(function);
+        //         string origin = Path;
+        //         if(createFunction == false)
+        //         {
+        //             Function ExtendedFunction = new Function(function, GetAllCommands(function) + "\n## Extended from " + origin + "\n");
+        //             ExtendedFunction.PrependCommands(commands);
+        //         } else
+        //         {
+        //             Function ExtendedFunction = new Function(function, "## Created from " + origin + "\n");
+        //             ExtendedFunction.PrependCommands(commands);
+        //         }
+        //         Displays.ExtendedFrom(path, origin);
+        //         Thread.Sleep(10);
+        //         return "function " + function;
+        //     } catch(IOException e)
+        //     {
+        //         Console.WriteLine(e.Message);
+        //         return "";
+        //     }
+        // }
     }
 }
