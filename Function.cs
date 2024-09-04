@@ -2,11 +2,10 @@
 {
     public class Function
     {
-        string path = "";
+        static string Path = "";
         public Function(string path, string contents = "")
         {
-            Context.currentPath = path;
-            this.path = path;
+            Path = path;
             if (!File.Exists(path))
             {
                 FileOrganizer.CreateFullDirectory(path, true);
@@ -33,14 +32,13 @@
         }
         public void PrependCommands(string[] commands)
         {
-            Context.currentPath = this.path;
-            string content = File.ReadAllText(this.path);
+            string content = File.ReadAllText(Path);
             foreach(string command in commands)
             {
                 content = content + command.TrimEnd() + "\n";
             }
             content = content.TrimEnd();
-            File.WriteAllText(this.path, content);
+            File.WriteAllText(Path, content);
         }
         public bool WriteAllCommands(string[] commands)
         {
@@ -52,7 +50,11 @@
                     content = content + command.TrimEnd() + "\n";
                 }
                 content = content.TrimEnd();
-                File.WriteAllText(this.path, content);
+                // File.WriteAllText(this.path, content);
+                using(var sw = new StreamWriter(Path)) {
+                    sw.WriteLine(content);
+                    sw.Close();
+                }
                 return true;
             } catch(IOException e)
             {
@@ -61,10 +63,9 @@
             }
         }
         public static void WriteAllFunctions(Function[] functions){
-            if(Context.currentPath != null)
             try {
                 foreach(Function f in functions){
-                    f.WriteAllCommands(new string[] { f.GetAllCommands(FileOrganizer.GetFunctionPath(Context.currentPath)) });
+                    f.WriteAllCommands(new string[] { f.GetAllCommands(FileOrganizer.GetFunctionPath(Path)) });
                 }
             } catch(IOException e) {
                 Console.WriteLine(e);
@@ -89,8 +90,7 @@
             {
                 Thread.Sleep(10);
                 string path = FileOrganizer.GetFunctionPath(function);
-                Context.currentPath = path;
-                string origin = this.path;
+                string origin = Path;
                 if(createFunction == false)
                 {
                     Function ExtendedFunction = new Function(FileOrganizer.GetFunctionPath(function), GetAllCommands(function) + "\n## Extended from " + origin + "\n");
@@ -108,7 +108,6 @@
                 Console.WriteLine($" Extended {path} from {origin}");
                 Console.ResetColor();
                 Thread.Sleep(10);
-                Context.currentPath = this.path;
                 return "function " + function;
             } catch(IOException e)
             {

@@ -11,11 +11,6 @@ namespace SteveSharp
         {
             _load = load;
             _main = main;
-            Context.projectName = name;
-            Context.id = id;
-            Context.packFormat = pack_format;
-            Context.loadFile = load;
-            Context.mainFile = main;
             try
             {
                 Console.Title = "SteveSharp Log";
