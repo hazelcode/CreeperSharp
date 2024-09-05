@@ -57,9 +57,6 @@ namespace SteveSharp
                     FunctionIndex.Add(function.Name, function);
                 }
             }
-        }
-        ~Project()
-        {
             if (FunctionIndex.Count > 0)
                 foreach (var function in FunctionIndex)
                 {
