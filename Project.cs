@@ -5,6 +5,7 @@ namespace SteveSharp
 {
     public class Project
     {
+        public Dictionary<string, Function> FunctionIndex { get; set; }
         private readonly Function _load;
         private readonly Function _main;
         private readonly List<Function> _functions;
@@ -15,6 +16,7 @@ namespace SteveSharp
             _load = load;
             _main = main;
             _functions = functions;
+            FunctionIndex = new Dictionary<string, Function>();
             string loadPath = FileOrganizer.GetFunctionPath(_load.Name);
             string mainPath = FileOrganizer.GetFunctionPath(_main.Name);
             Directory.CreateDirectory(name);
@@ -52,17 +54,25 @@ namespace SteveSharp
             {
                 foreach (var function in functions)
                 {
-                    if (!File.Exists(FileOrganizer.GetFunctionPath(function.Name)))
+                    FunctionIndex.Add(function.Name, function);
+                }
+            }
+        }
+        ~Project()
+        {
+            if (FunctionIndex.Count > 0)
+                foreach (var function in FunctionIndex)
+                {
+                    if (!File.Exists(FileOrganizer.GetFunctionPath(function.Value.Name)))
                     {
-                        Displays.NewFunction(function.Name);
+                        Displays.NewFunction(function.Value.Name);
                     }
                     else
                     {
-                        Displays.WrittenFunction(function.Name);
+                        Displays.WrittenFunction(function.Value.Name);
                     }
-                    File.WriteAllLines(FileOrganizer.GetFunctionPath(function.Name), function.Body);
+                    File.WriteAllLines(FileOrganizer.GetFunctionPath(function.Value.Name), function.Value.Body);
                 }
-            }
         }
     }
 }
