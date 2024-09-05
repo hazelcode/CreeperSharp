@@ -5,11 +5,11 @@ SteveSharp Framework for Minecraft datapacks developers and make easier the codi
 # How to install
 
 **Requirements**
- - [.NET 6.0 or newer](https://dotnet.microsoft.com/es-es/download/dotnet/6.0)
+ - [.NET 8.0 or newer](https://dotnet.microsoft.com/es-es/download/dotnet/8.0)
  - [SteveSharp](https://www.nuget.org/packages/SteveSharp)
 
 ## Installing SteveSharp on your project
-You need to install [.NET 6.0 or newer](https://dotnet.microsoft.com/es-es/download/dotnet/6.0) first and create a .NET Project:
+You need to install [.NET 8.0 or newer](https://dotnet.microsoft.com/es-es/download/dotnet/8.0) first and create a .NET Project:
 ```
 dotnet new console -n (your project name)
 ```
