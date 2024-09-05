@@ -10,11 +10,11 @@
             Body = body;
             Displays.NewFunction(name);
         }
-        public string Return(int i)
+        public static string Return(int i)
         {
             return "return " + i;
         }
-        public string Call(string function)
+        public static string Call(string function)
         {
             return "function " + function;
         }
