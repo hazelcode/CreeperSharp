@@ -2,6 +2,8 @@
 using SteveSharp.Core;
 using SteveSharp.JsonShapes;
 
+/*
+NOT FOR NOW
 namespace SteveSharp.Utils
 {
     public class Hitbox
@@ -67,4 +69,4 @@ namespace SteveSharp.Utils
                 );
         }
     }
-}
+}*/

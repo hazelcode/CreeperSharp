@@ -10,13 +10,14 @@
                 string[] pathParts = Dir.Split(separator);
                 int i;
                 string path = "";
-                for(i = 0; i<pathParts.Length; i++)
+                for (i = 0; i < pathParts.Length; i++)
                 {
-                    if(i == 0) { path = pathParts[i]; } else
+                    if (i == 0) { path = pathParts[i]; }
+                    else
                     {
                         path = path + "/" + pathParts[i];
                     }
-                    if(i == pathParts.Length - 1 && createFile == true)
+                    if (i == pathParts.Length - 1 && createFile == true)
                     {
                         path = path.Replace("/" + pathParts[i], null);
                     }
@@ -26,7 +27,8 @@
                 {
                     File.Create(Dir);
                 }
-            } catch(IOException e)
+            }
+            catch (IOException e)
             {
                 Console.WriteLine(e.Message);
             }
@@ -37,7 +39,7 @@
             char[] separators = { ':', '/' };
             string[] parts = namespacedPath.Split(separators);
             string relativePath = "data/" + parts[0] + "/functions";
-            for(int i = 1; i<parts.Length; i++)
+            for (int i = 1; i < parts.Length; i++)
             {
                 relativePath = relativePath + "/" + parts[i];
             }
@@ -55,6 +57,23 @@
             }
             relativePath = relativePath + ".json";
             return relativePath;
+        }
+        public static string GetAsNamespacedPath(string id, string path, string sector)
+        {
+            string path2 = path.Replace(sector, "");
+            string[] parts = path2.Split('/'); // data/functions/load.mcfunction => {"data", "functions", "load.mcfunction" }
+            parts[parts.Length - 1] = parts[parts.Length - 1].Replace(".json", "");
+            parts[parts.Length - 1] = parts[parts.Length - 1].Replace(".mcfunction", ""); // {"data", "functions", "load.mcfunction" } => {"data", "functions", "load" }
+            parts = parts[1..];
+            return id + ":" + string.Join('/', parts);
+        }
+        public static string GetFunctionName(string namespacedPath){
+            string[] parts = namespacedPath.Split(new char[]{':','/'});
+            return parts[parts.Length - 1];
+        }
+        public static string GetNamespace(string namespacedPath){
+            string[] parts = namespacedPath.Split(new char[]{':','/'});
+            return parts[0];
         }
     }
 }
