@@ -5,75 +5,63 @@ namespace SteveSharp
 {
     public class Project
     {
-        private readonly string _load;
-        private readonly string _main;
-        public Project(string name, string description, string id, int pack_format, string load, string main)
+        private readonly Function _load;
+        private readonly Function _main;
+        private readonly List<Function> _functions;
+        public Project(string name, string description, string id, int pack_format, Function load, Function main, List<Function> functions)
         {
+            // Display fresh SteveSharp Display
+            Displays.SteveSharpDisplay(name);
             _load = load;
             _main = main;
-            try
+            _functions = functions;
+            string loadPath = FileOrganizer.GetFunctionPath(_load.Name);
+            string mainPath = FileOrganizer.GetFunctionPath(_main.Name);
+            Directory.CreateDirectory(name);
+            Environment.CurrentDirectory = name;
+            FileOrganizer.CreateFullDirectory($"data/{id}/functions");
+            FileOrganizer.CreateFullDirectory($"data/minecraft/tags/functions");
+            var metadata = new PackMetadata
             {
-                // Display fresh SteveSharp Display
-                Displays.SteveSharpDisplay(name);
-                // Create project directory
-                if (!Directory.Exists(name))
+                pack = new Pack
                 {
-                    Directory.CreateDirectory(name);
+                    description = description,
+                    pack_format = pack_format
                 }
-                Environment.CurrentDirectory = name;
+            };
+            File.WriteAllText("pack.mcmeta", JsonSerializer.Serialize(metadata));
+            File.WriteAllText($"data/minecraft/tags/functions/load.json",
+                JsonSerializer.Serialize(new Tag
+                {
+                    values = new string[] { _load.Name }
+                }, new JsonSerializerOptions { WriteIndented = true })
+            );
+            File.WriteAllText($"data/minecraft/tags/functions/tick.json",
+                JsonSerializer.Serialize(new Tag
+                {
+                    values = new string[] { _main.Name }
+                }, new JsonSerializerOptions { WriteIndented = true })
+            );
+            Displays.ProjectCreated();
+            File.WriteAllLines(loadPath, _load.Body);
+            Displays.WrittenFunction(_load.Name);
+            File.WriteAllLines(mainPath, _main.Body);
+            Displays.WrittenFunction(_main.Name);
 
-                // Serialize project metadata to JSON and write to the pack.mcmeta file
-                var packMetadata = new PackMetadata
-                {
-                    pack = new pack { description = description, pack_format = pack_format }
-                };
-                var options = new JsonSerializerOptions { WriteIndented = true };
-                string MetadataStructure = JsonSerializer.Serialize(packMetadata, options);
-                File.WriteAllText("pack.mcmeta", MetadataStructure);
-
-                // Create directories and project namespace
-                if (!File.Exists($"data/{id}/functions/{load}.mcfunction"))
-                {
-                    Thread.Sleep(10);
-                    FileOrganizer.CreateFullDirectory(FileOrganizer.GetFunctionPath($"{id}:{load}"), true);
-                    Console.WriteLine("Load function created succesfully");
-                    Thread.Sleep(10);
-                }
-                if (!File.Exists($"data/{id}/functions/{main}.mcfunction"))
-                {
-                    Thread.Sleep(10);
-                    FileOrganizer.CreateFullDirectory(FileOrganizer.GetFunctionPath($"{id}:{main}"), true);
-                    Console.WriteLine("Main function created succesfully");
-                    Thread.Sleep(10);
-                }
-                if (!Directory.Exists($"data/minecraft/tags/functions"))
-                {
-                    FileOrganizer.CreateFullDirectory($"data/minecraft/tags/functions");
-                }
-
-                // Create tick and load JSON files
-                string[] loadTag = { $"{id}:{load}" };
-                string[] tickTag = { $"{id}:{main}" };
-                Tags.WriteAllValues(FileOrganizer.GetJsonPath("minecraft:load","tags/functions"), loadTag);
-                Tags.WriteAllValues(FileOrganizer.GetJsonPath("minecraft:tick", "tags/functions"), loadTag);
-                Console.ForegroundColor = ConsoleColor.DarkCyan;
-                Console.BackgroundColor = ConsoleColor.Cyan;
-                Console.Write("   P   ");
-                Console.ResetColor();
-                Console.ForegroundColor = ConsoleColor.Cyan;
-                Console.WriteLine(" Project created succesfully!");
-                Console.ResetColor();
-            } catch(IOException e)
+            if (_functions.Count > 0)
             {
-                Console.ForegroundColor = ConsoleColor.DarkRed;
-                Console.BackgroundColor = ConsoleColor.Red;
-                Console.Write("  P/E  ");
-                Console.ResetColor();
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine(" Project wasn't created succesfully or completely. Check the errors:\n");
-                Console.ForegroundColor = ConsoleColor.DarkRed;
-                Console.WriteLine(e.Message);
-                Console.ResetColor();
+                foreach (var function in functions)
+                {
+                    if (!File.Exists(FileOrganizer.GetFunctionPath(function.Name)))
+                    {
+                        Displays.NewFunction(function.Name);
+                    }
+                    else
+                    {
+                        Displays.WrittenFunction(function.Name);
+                    }
+                    File.WriteAllLines(FileOrganizer.GetFunctionPath(function.Name), function.Body);
+                }
             }
         }
     }

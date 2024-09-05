@@ -2,9 +2,9 @@
 {
     public class PackMetadata
     {
-        public pack? pack { get; set; }
+        public Pack? pack { get; set; }
     }
-    public class pack
+    public class Pack
     {
         public string? description { get; set; }
         public int pack_format { get; set; }

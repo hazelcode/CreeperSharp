@@ -20,6 +20,16 @@ internal static class Displays
         Console.WriteLine($" Created {path}");
         Console.ResetColor();
     }
+    internal static void WrittenFunction(string path)
+    {
+        Console.ForegroundColor = ConsoleColor.DarkCyan;
+        Console.BackgroundColor = ConsoleColor.Cyan;
+        Console.Write("  WRT  ");
+        Console.ResetColor();
+        Console.ForegroundColor = ConsoleColor.Cyan;
+        Console.WriteLine($" Written {path}");
+        Console.ResetColor();
+    }
     internal static void ExtendedFunction(string path)
     {
         Console.ForegroundColor = ConsoleColor.DarkYellow;
@@ -35,6 +45,28 @@ internal static class Displays
         Console.Title = "SteveSharp Log";
         Console.ForegroundColor = ConsoleColor.Green;
         Console.WriteLine($"\n</>   S t e v e S h a r p   L o g   </>\n\nProject: {name}\n\n");
+        Console.ResetColor();
+    }
+    internal static void ProjectCreated()
+    {
+        Console.ForegroundColor = ConsoleColor.DarkCyan;
+        Console.BackgroundColor = ConsoleColor.Cyan;
+        Console.Write("   P   ");
+        Console.ResetColor();
+        Console.ForegroundColor = ConsoleColor.Cyan;
+        Console.WriteLine(" Project created succesfully!");
+        Console.ResetColor();
+    }
+    internal static void ProjectNotCreated(IOException e)
+    {
+        Console.ForegroundColor = ConsoleColor.DarkRed;
+        Console.BackgroundColor = ConsoleColor.Red;
+        Console.Write("  P/E  ");
+        Console.ResetColor();
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.WriteLine(" Project wasn't created succesfully or completely. Check the errors:\n");
+        Console.ForegroundColor = ConsoleColor.DarkRed;
+        Console.WriteLine(e.Message);
         Console.ResetColor();
     }
 }

@@ -2,56 +2,13 @@
 {
     public class Function
     {
-        public string Path = "";
+        public string Name = "";
         public List<string> Body { get; set; }
-        public Function(string path, List<string> body)
+        public Function(string name, List<string> body)
         {
-            Path = FileOrganizer.GetFunctionPath(path);
+            Name = name;
             Body = body;
-            Displays.NewFunction(path);
-            // if (!File.Exists(path))
-            // {
-            //     FileOrganizer.CreateFullDirectory(Path, true);
-            //     Displays.NewFunction(path);
-            // } else
-            // {
-            //     Displays.ExtendedFunction(path);
-            // }
-            // Thread.Sleep(10);
-            // File.WriteAllText(Path, contents);
-            // Thread.Sleep(10);
-        }
-        public void PrependCommands(string[] commands)
-        {
-            string content = File.ReadAllText(Path);
-            foreach(string command in commands)
-            {
-                content = content + command.TrimEnd() + "\n";
-            }
-            content = content.TrimEnd();
-            File.WriteAllText(Path, content);
-        }
-        public bool WriteAllCommands(string[] commands)
-        {
-            try
-            {
-                string content = "";
-                foreach (string command in commands)
-                {
-                    content = content + command.TrimEnd() + "\n";
-                }
-                content = content.TrimEnd();
-                // File.WriteAllText(this.path, content);
-                using(var sw = new StreamWriter(Path)) {
-                    sw.WriteLine(content);
-                    sw.Close();
-                }
-                return true;
-            } catch(IOException e)
-            {
-                Console.WriteLine(e.Message);
-                return false;
-            }
+            Displays.NewFunction(name);
         }
         public string Return(int i)
         {
@@ -61,30 +18,5 @@
         {
             return "function " + function;
         }
-        // public string Extend(string function, string[] commands, bool createFunction = false)
-        // {
-        //     try
-        //     {
-        //         Thread.Sleep(10);
-        //         string path = FileOrganizer.GetFunctionPath(function);
-        //         string origin = Path;
-        //         if(createFunction == false)
-        //         {
-        //             Function ExtendedFunction = new Function(function, GetAllCommands(function) + "\n## Extended from " + origin + "\n");
-        //             ExtendedFunction.PrependCommands(commands);
-        //         } else
-        //         {
-        //             Function ExtendedFunction = new Function(function, "## Created from " + origin + "\n");
-        //             ExtendedFunction.PrependCommands(commands);
-        //         }
-        //         Displays.ExtendedFrom(path, origin);
-        //         Thread.Sleep(10);
-        //         return "function " + function;
-        //     } catch(IOException e)
-        //     {
-        //         Console.WriteLine(e.Message);
-        //         return "";
-        //     }
-        // }
     }
 }
