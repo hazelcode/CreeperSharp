@@ -29,7 +29,7 @@ namespace SteveSharp
                     pack_format = pack_format
                 }
             };
-            File.WriteAllText("pack.mcmeta", JsonSerializer.Serialize(metadata));
+            File.WriteAllText("pack.mcmeta", JsonSerializer.Serialize(metadata, new JsonSerializerOptions { WriteIndented = true }));
             File.WriteAllText($"data/minecraft/tags/functions/load.json",
                 JsonSerializer.Serialize(new Tag
                 {
