@@ -15,4 +15,11 @@ public static class For
         }
         return string.Join("\n", ret);
     }
+    public static List<Function> Functions(int to, Func<int, Function> block, int from = 0) {
+        List<Function> fullBlock = new();
+        for(int i = from; i <= to; i++) {
+            fullBlock.Add(block(i));
+        }
+        return fullBlock;
+    }
 }
