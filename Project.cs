@@ -9,7 +9,7 @@ namespace SteveSharp
         private readonly Function _load;
         private readonly Function _main;
         private readonly List<Function> _functions;
-        public Project(string name, string description, string id, int pack_format, Function load, Function main, List<Function> functions, List<List<Function>> generated = null!)
+        public Project(string name, string description, string id, int pack_format, Function load, Function main, List<Function> functions, List<List<Function>> matrix = null!)
         {
             // Display fresh SteveSharp Display
             Displays.SteveSharpDisplay(name);
@@ -57,8 +57,8 @@ namespace SteveSharp
                     FunctionIndex.Add(function.Name, function);
                 }
             }
-            if(generated != null && generated.Count > 0) {
-                foreach(var list in generated) {
+            if(matrix != null && matrix.Count > 0) {
+                foreach(var list in matrix) {
                     foreach(var fun in list) {
                         FunctionIndex.Add(fun.Name, fun);
                     }
