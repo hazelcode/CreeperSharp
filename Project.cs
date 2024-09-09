@@ -75,6 +75,12 @@ namespace SteveSharp
                     {
                         Displays.WrittenFunction(function.Value.Name);
                     }
+                    
+                    //Fix directory-related errors about directories not found
+                    string directory = Path.GetDirectoryName(FileOrganizer.GetFunctionPath(function.Value.Name))!;
+                    if(!Directory.Exists(directory)) {
+                        Directory.CreateDirectory(directory);
+                    }
                     File.WriteAllLines(FileOrganizer.GetFunctionPath(function.Value.Name), function.Value.Body);
                 }
         }
