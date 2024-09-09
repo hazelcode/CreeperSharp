@@ -9,7 +9,7 @@ namespace SteveSharp
         private readonly Function _load;
         private readonly Function _main;
         private readonly List<Function> _functions;
-        public Project(string name, string description, string id, int pack_format, Function load, Function main, List<Function> functions, List<List<Function>> matrix = null!)
+        public Project(string name, string description, string id, int pack_format, Function load, Function main, List<Function> functions, List<List<Function>> matrix = null!, List<JsonFile> jsonFiles = null!)
         {
             // Display fresh SteveSharp Display
             Displays.SteveSharpDisplay(name);
@@ -57,9 +57,12 @@ namespace SteveSharp
                     FunctionIndex.Add(function.Name, function);
                 }
             }
-            if(matrix != null && matrix.Count > 0) {
-                foreach(var list in matrix) {
-                    foreach(var fun in list) {
+            if (matrix != null && matrix.Count > 0)
+            {
+                foreach (var list in matrix)
+                {
+                    foreach (var fun in list)
+                    {
                         FunctionIndex.Add(fun.Name, fun);
                     }
                 }
@@ -75,14 +78,34 @@ namespace SteveSharp
                     {
                         Displays.WrittenFunction(function.Value.Name);
                     }
-                    
+
                     //Fix directory-related errors about directories not found
                     string directory = Path.GetDirectoryName(FileOrganizer.GetFunctionPath(function.Value.Name))!;
-                    if(!Directory.Exists(directory)) {
+                    if (!Directory.Exists(directory))
+                    {
                         Directory.CreateDirectory(directory);
                     }
                     File.WriteAllLines(FileOrganizer.GetFunctionPath(function.Value.Name), function.Value.Body);
                 }
+
+            if (jsonFiles != null && jsonFiles.Count > 0)
+            {
+                foreach (var file in jsonFiles)
+                {
+                    string directory = Path.GetDirectoryName(file.Path)!;
+                    string jsonText = JsonSerializer.Serialize(file.Object, new JsonSerializerOptions { WriteIndented = true });
+                    if (!Directory.Exists(directory))
+                    {
+                        Directory.CreateDirectory(directory);
+                    }
+                    if(!File.Exists(file.Path)) {
+                        Displays.NewJson(file.Path);
+                    } else {
+                        Displays.WrittenJson(file.Path);
+                    }
+                    File.WriteAllText(file.Path, jsonText);
+                }
+            }
         }
     }
 }
