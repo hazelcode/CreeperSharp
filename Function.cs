@@ -18,5 +18,13 @@
         {
             return "function " + function;
         }
+        public static string Schedule(string function, string time, bool append = false, bool replace = false) {
+            if(append && !replace) return $"schedule function {function} {time} append";
+            else if(!append && replace) return $"schedule function {function} {time} replace";
+            else return $"schedule function {function} {time}";
+        }
+        public string ScheduleSelf(string time, bool append = false, bool replace = false) => Schedule(Name, time, append, replace);
+        public static string ClearSchedule(string function) => $"schedule clear {function}";
+        public string ClearSchedule() => ClearSchedule(Name);
     }
 }
