@@ -22,7 +22,7 @@ public class Recipe {
     }
     
     [JsonPropertyName("type")]
-    public string Type { get; set; } = "minecraft:blasting";
+    public string? Type { get; set; }
 
     [JsonPropertyName("category")]
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
