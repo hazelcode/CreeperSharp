@@ -8,7 +8,7 @@ public class CampfireCooking : Recipe {
 
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
     [JsonPropertyName("experience")]
-    public int Experience { get; set; }
+    public double Experience { get; set; }
 
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
     [JsonPropertyName("cookingtime")]
