@@ -1,12 +1,9 @@
 using System.Text.Json.Serialization;
 
-namespace SteveSharp.JsonShapes.Recipes;
-
-public class BlastingRecipe : Recipe {
-    
+public class CampfireCooking : Recipe {
     [JsonPropertyName("type")]
-    new public string Type { get; set; } = "minecraft:blasting";
-    
+    new public string Type { get; set; } = "minecraft:campfire_cooking";
+
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
     [JsonPropertyName("experience")]
     public int Experience { get; set; }
