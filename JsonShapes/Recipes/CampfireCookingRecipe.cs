@@ -2,15 +2,15 @@ using System.Text.Json.Serialization;
 
 namespace SteveSharp.JsonShapes.Recipes;
 
-public class Smelting : Recipe {
+public class CampfireCookingRecipe : Recipe {
     [JsonPropertyName("type")]
-    new public string Type { get; set; } = "minecraft:smelting";
+    new public string Type { get; set; } = "minecraft:campfire_cooking";
 
-    [JsonPropertyName("experience")]
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+    [JsonPropertyName("experience")]
     public double Experience { get; set; }
 
-    [JsonPropertyName("cookingtime")]
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+    [JsonPropertyName("cookingtime")]
     public int CookingTime { get; set; }
 }

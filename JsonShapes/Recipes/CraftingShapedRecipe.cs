@@ -2,7 +2,7 @@ using System.Text.Json.Serialization;
 
 namespace SteveSharp.JsonShapes.Recipes;
 
-public class CraftingShapeless : CraftingSpecial {
+public class CraftingShapedRecipe : CraftingSpecial {
     public class RecipeResult : Recipe.RecipeResult {
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         [JsonPropertyName("count")]
@@ -10,15 +10,22 @@ public class CraftingShapeless : CraftingSpecial {
     }
 
     [JsonPropertyName("type")]
-    new public string Type { get; set; } = "minecraft:crafting_shapeless";
+    new public string Type {  get; set; } = "minecraft:crafting_shaped";
 
     [JsonPropertyName("group")]
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     public string? Group { get; set; }
-    
-    [JsonPropertyName("ingredients")]
-    public dynamic[]? Ingredients { get; set; }
 
+    [JsonPropertyName("pattern")]
+    public string[]? Pattern { get; set; }
+
+    [JsonPropertyName("key")]
+    public Dictionary<string, Recipe.RecipeIngredient>? Key { get; set; }
+    
     [JsonPropertyName("result")]
     public RecipeResult? Result { get; set; }
+
+    [JsonPropertyName("show_notification")]
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+    public bool ShowNotification { get; set; }
 }
